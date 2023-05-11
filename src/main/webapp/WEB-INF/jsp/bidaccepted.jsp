@@ -15,7 +15,7 @@
 			<td>${t.bidid}</td>
 			<td>${t.bidprice}</td>
 			<td>${t.id}</td> 
-			<td><a href="">Payment</a></td>
+			<td><a href="topay/${t.bidid}">Payment</a></td>
 			
 		</tr>
 	</c:forEach>

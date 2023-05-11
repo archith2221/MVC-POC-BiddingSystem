@@ -73,7 +73,7 @@ public class BiddingamtDAO {
 	
 
 	public int bidupdate(Biddamount b) {
-		  System.out.println("BidAccepted value: " + b.isBidAccepted());
+//		  System.out.println("BidAccepted value: " + b.isBidAccepted());
 		String sql = "update Bid set bidaccepted='" + (b.isBidAccepted() ? 1:0) + "' where bidid='" + b.getBidid() + "'";
 
 		return template.update(sql);

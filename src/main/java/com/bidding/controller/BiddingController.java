@@ -69,10 +69,13 @@ public class BiddingController {
 	
 	@RequestMapping(value = "/bideditsave", method = RequestMethod.POST)
 	public String editsave(@ModelAttribute("b") Biddamount b) {
-		System.out.println("Done");
+//		 System.out.println("Done"); 
 		dao.bidupdate(b);
-		System.out.println("Done1");
+//		System.out.println("Done1");
 		return "redirect:/viewbidprod";
 	}
+	
+	
+	
 
 }
