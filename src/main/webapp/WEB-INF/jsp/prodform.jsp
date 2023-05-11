@@ -16,10 +16,10 @@
 			<td>Price :</td>
 			<td><form:input path="price" /></td>
 		</tr>
-	<%-- 	<tr>
+	 	<tr>
 			<td>Activated :</td>
 			<td><form:input path="activated" /></td>
-		</tr> --%>
+		</tr> 
 		<tr>
 			<td></td>
 			<td><input type="submit" value="Save" /></td>

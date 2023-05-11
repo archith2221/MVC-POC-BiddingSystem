@@ -6,7 +6,7 @@ public class Product {
 	private String name;
 	private String details;
 	private float price;
-//	private boolean activated;
+	private boolean activated;
 
 	public int getId() {
 		return id;
@@ -39,13 +39,13 @@ public class Product {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-//
-//	public boolean isActivated() {
-//		return activated;
-//	}
-//
-//	public void setActivated(boolean activated) {
-//		this.activated = activated;
-//	}
+
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
 
 }

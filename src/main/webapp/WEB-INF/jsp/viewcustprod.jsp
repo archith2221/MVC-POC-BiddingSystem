@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -9,23 +8,19 @@
 		<th>Name</th>
 		<th>Details</th>
 		<th>Price</th>
-		<th>Activated</th> 
-		<th>Edit</th>
-		<th>Delete</th>
+		<th>Bidding</th>
 	</tr>
 	<c:forEach var="p" items="${list}">
 		<tr>
 			<td>${p.id}</td>
 			<td>${p.name}</td>
 			<td>${p.details}</td>
-			<td>${p.price}</td>
-		    <td>${p.activated}</td> 
-			<td><a href="editprod/${p.id}">Edit</a></td>
-			<td><a href="deleteprod/${p.id}">Delete</a></td>
+			<td>${p.price}</td> 
+			<td><a href="bid/${p.id}" >BIDD</a></td>
+			
 		</tr>
 	</c:forEach>
 </table>
 <br />
-<a href="prodform">Add New Products</a><br>
-<a href="viewbidprod">Bidded Products</a><br>
-<a href="viewcustprod">customer Products</a>
+
+<a href="bidaccepted">BiddedProducts</a><br>

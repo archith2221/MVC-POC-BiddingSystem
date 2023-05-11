@@ -21,11 +21,15 @@
 			<td>Price :</td>
 			<td><form:input path="price" /></td>
 		</tr>
-	<%-- 	<tr>
+		<tr>
 			<td>Activated :</td>
-			<td><form:input path="activated" /></td>
-		</tr> --%>
-
+		
+	<td>	<select name="activated">
+          <option value="true">Approved</option>
+          <option value="false">Unapproved</option>
+        </select>
+		</tr> </td>
+<br>
 		<tr>
 			<td></td>
 			<td><input type="submit" value="Edit Save" /></td>
