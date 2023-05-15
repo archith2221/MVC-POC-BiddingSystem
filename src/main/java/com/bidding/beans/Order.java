@@ -3,15 +3,12 @@ package com.bidding.beans;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Order {
+
 	@Autowired
-	String pro;
+	Product product;
 	
-	public String getPro() {
-		return pro;
-	}
-	public void setPro(String string) {
-		this.pro = string;
-	}
+	
+	private String name;
 	private int orderid;
 	
 	private float bidprice;
@@ -28,11 +25,24 @@ public class Order {
 	public void setBidprice(float bidprice) {
 		this.bidprice = bidprice;
 	}
+
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	}

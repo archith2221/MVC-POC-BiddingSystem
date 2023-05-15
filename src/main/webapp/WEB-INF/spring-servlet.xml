@@ -31,16 +31,16 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="dataSource" ref="ds"></property>
 	</bean>
 
-	<bean id="prodDao" class="com.bidding.dao.ProductDAO">
-		<property name="template" ref="jt"></property>
-	</bean>
-	
 	<bean id="dao" class="com.bidding.dao.BiddingamtDAO">
 		<property name="template" ref="jt"></property>
 	</bean>
 	
-	
 	<bean id="ordao" class="com.bidding.dao.OrderDAO">
 		<property name="template" ref="jt"></property>
 	</bean>
+	
+	<bean id="prodDao" class="com.bidding.dao.ProductDAO">
+		<property name="template" ref="jt"></property>
+	</bean>
+	
 </beans>

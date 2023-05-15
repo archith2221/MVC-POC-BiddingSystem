@@ -52,7 +52,7 @@ public class ProductController {
 	@RequestMapping(value = "/editsave", method = RequestMethod.POST)
 	public String editsave(@ModelAttribute("p") Product p) {
 		prodDao.update(p);
-		return "redirect:/viewprod";
+		return"redirect:/viewprod";
 	}
 
 	

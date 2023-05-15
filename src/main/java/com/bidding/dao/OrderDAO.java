@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.bidding.beans.Biddamount;
 import com.bidding.beans.Order;
-import com.bidding.beans.Product;
+
 
 public class OrderDAO {
 
@@ -36,15 +36,18 @@ public class OrderDAO {
 		}
 		public List<Order> getOrders() {
 			
-			return template.query("select * from Ordertb", new RowMapper<Order>() {
+			return template.query("SELECT p.name, o.*FROM product p JOIN ordertb o ON p.id = o.id", new RowMapper<Order>() {
 				public Order mapRow(ResultSet rs, int row) throws SQLException {
 					Order o = new Order();
-					o.setOrderid(rs.getInt(1));
-					o.setBidprice(rs.getFloat(2));
-					o.setId(rs.getInt(3));
-					return o;
+					o.setName(rs.getString(1));
+					o.setOrderid(rs.getInt(2));
+					o.setBidprice(rs.getFloat(3));
+					o.setId(rs.getInt(4));
+                       	return o;
 				}
-			});	}
+			});	
+			
+		}
 
 
 }
