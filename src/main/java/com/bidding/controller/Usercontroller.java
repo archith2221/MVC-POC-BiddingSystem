@@ -42,12 +42,38 @@ public class Usercontroller {
 		
 	}
 	 
-	 @RequestMapping(value="/registeradd", method = RequestMethod.POST)
-	 public String registernewuser(@ModelAttribute("u") User u ) {
-		 userdao.adduser(u);
-		 return "redirect:/";
+//	 @RequestMapping(value="/registeradd", method = RequestMethod.POST)
+//	 public String registernewuser(@ModelAttribute("u") User u ) {
+//		 userdao.adduser(u);
+//		 return "redirect:/";
+//	 
+//	 }
 	 
+	 @RequestMapping(value="/registeradd", method=RequestMethod.POST)
+	 public String registernewuser(@ModelAttribute("command") User user, Model model) {
+	     try {
+	    	 System.out.println("Email: " + user.getEmail());
+	         User fetchedUser = userdao.getUserByEmailforReg(user);
+	         System.out.println("HII22");
+	         if (fetchedUser == null) {
+	             userdao.adduser(user);
+	             System.out.println("HII");
+	             return "redirect:/";
+	         } else {
+	             model.addAttribute("error", "Email already exists");
+	             System.out.println("HII33");
+	             return "register";
+	           
+	         }
+	     } catch (Exception e) {
+	    	 e.printStackTrace();
+	         model.addAttribute("error", "An error occurred while processing your request.");
+	         System.out.println("HII66");
+	         return "register";
+	     }
 	 }
+	 
+	 
 	 
 	 @RequestMapping(value="/login", method=RequestMethod.POST)
 	 public String login(@ModelAttribute("user") User user, Model model,HttpSession session) {

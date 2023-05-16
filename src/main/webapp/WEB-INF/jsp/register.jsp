@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <h1>Register Page</h1>
- <form:form method="POST" action="/bidding/registeradd">
+ <form:form method="POST" action="/bidding/registeradd" >
 	<table>
 		
 		<tr>
@@ -32,3 +32,7 @@
 	</table>
 	
 </form:form>  
+
+<c:if test="${not empty error}">
+        <div style="color: red;">${error}</div>
+    </c:if>

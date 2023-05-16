@@ -1,5 +1,6 @@
 package com.bidding.dao;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,6 +15,15 @@ JdbcTemplate template;
 		this.template = template;
 	}
 	
+	public User getUserByEmailforReg(User user) {
+	    String sql = "SELECT * FROM User WHERE email = ?";
+	    try {
+	        return template.queryForObject(sql, new Object[]{user.getEmail()},
+	                BeanPropertyRowMapper.newInstance(User.class));
+	    } catch (EmptyResultDataAccessException e) {
+	        return null;
+	    }
+	}
 	public int adduser(User u) {
 		
 		String sql="insert into User(name,email,password,role) values('"+u.getName()+"','"+u.getEmail()+"','"+u.getPassword()+"','"+u.getRole()+"')";
