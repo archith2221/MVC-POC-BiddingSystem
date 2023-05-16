@@ -2,6 +2,8 @@ package com.bidding.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,29 +24,41 @@ public class BiddingController {
 	BiddingamtDAO dao;
 	
 	@RequestMapping("/bidaccepted")
-	public String viewacceptedbid(Model m) {
-		List<Biddamount> list = dao.getbidaccepted();
-		List<Biddamount> listno=dao.getbitnotaccepted();
+	public String viewacceptedbid(Model m,HttpSession session) {
+		 int uid = (int) session.getAttribute("uid");
+		List<Biddamount> list = dao.getbidaccepted(uid);
+		List<Biddamount> listno=dao.getbitnotaccepted(uid);
 		m.addAttribute("acclist", list);
 		m.addAttribute("notacclist", listno);
 		return "bidaccepted" ;
 		
 	}
+
 	
-	@RequestMapping(value = "/bid/{id}")
-	public String bid(@PathVariable int id, Model m) {
-	    Product p = dao.getProductById(id);
-	    Biddamount biddamount = new Biddamount();
-	    m.addAttribute("command", biddamount);
-	    m.addAttribute("P", p);
-	    return "biddamountform";
-	}
-	
-	@RequestMapping(value = "/biddstore", method = RequestMethod.POST)
-	public String biddstore(@ModelAttribute("b") Biddamount b) {
-		dao.newbid(b);
-		return "redirect:viewcustprod";
-	}
+	  @RequestMapping(value = "/bid/{id}")
+	  public String bid(@PathVariable int id,Model m) {
+		
+		  Product p = dao.getProductById(id); 
+		  Biddamount biddamount = new Biddamount();
+		  m.addAttribute("command", biddamount); 
+		  m.addAttribute("P", p);
+	  return "biddamountform"; }
+	  
+//	 	@RequestMapping(value = "/biddstore", method = RequestMethod.POST)
+//	public String biddstore(@ModelAttribute("b") Biddamount b) {
+//		dao.newbid(b);
+//		return "redirect:viewcustprod";
+//	}
+	  
+	  
+	  @RequestMapping(value = "/biddstore", method = RequestMethod.POST)
+	  public String placeBid(@ModelAttribute("b") Biddamount b, HttpSession session) {
+	      int uid = (int) session.getAttribute("uid");
+	      System.out.println("uid in session: " + session.getAttribute("uid"));
+	      b.setUid(uid);
+	      dao.newbid(b);
+	      return "redirect:viewcustprod";
+	  }
 	
 	
 	@RequestMapping(value = "/editbid/{bidid}")

@@ -9,7 +9,9 @@
 		<th>Bidded Price</th>
 		<th>ProductId</th>
 		<th>BidResponse</th> 
+		<th>CustomerId</th>
 		<th>Edit</th>
+		<th>CustomerId</th>
 	</tr>
 	<c:forEach var="b" items="${list}">
 		<tr>
@@ -17,6 +19,7 @@
 			<td>${b.bidprice}</td>
 			<td>${b.id}</td>
 		    <td>${b.bidAccepted}</td> 
+		    <td>${b.uid}</td>
 			<td><a href="editbid/${b.bidid}">Edit</a></td>
 			<td><a href="deletebidprod/${b.bidid}">Delete</a></td>
 		</tr>

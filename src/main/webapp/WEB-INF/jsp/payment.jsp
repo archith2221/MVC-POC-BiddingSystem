@@ -8,20 +8,25 @@
 			<td></td>
 			<td><form:hidden path="bidid" /></td>
 		</tr> --%>
+		<tr>
+         
+            <td><form:hidden path="uid" value="${B.uid}" /><td>
+           
+            </tr>
 		
 		<tr>
            <td>Product ID:</td>
              
               <td><form:input path="id" value="${B.id}" readonly="true" /><td>
             </tr>
-		
-		<tr>
+		   
+	
 		<tr>
            <td> Price to be paid:</td>
-            <td><form:input path="bidprice" value="${B.bidprice}" readonly="true" /><td>
+            <td><form:input path="bidprice" value="${B.bidprice}" /><td>
            
             </tr>
-		
+            
 		<tr>
 			<td>Payment details</td>
 		

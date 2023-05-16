@@ -22,6 +22,10 @@
 	</c:forEach>
 </table>
 <br />
+<table>
+<tr>
+
+</table>
 
 <a href="bidaccepted">Bidd Status</a><br>
 <a href="Purchased">PurchasedProducts</a><br>

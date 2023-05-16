@@ -8,10 +8,16 @@ import com.bidding.dao.ProductDAO;
 public class Biddamount {
 
 	private int bidid;
-
+    private int uid;
 	private float bidprice;
     private int id;
-    private boolean bidAccepted ;
+    public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+	private boolean bidAccepted ;
     
     
 	

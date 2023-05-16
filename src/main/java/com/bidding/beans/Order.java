@@ -7,6 +7,7 @@ public class Order {
 	@Autowired
 	Product product;
 	
+	private int uid;
 	
 	private String name;
 	private int orderid;
@@ -43,6 +44,12 @@ public class Order {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
 	}
 	
 	}

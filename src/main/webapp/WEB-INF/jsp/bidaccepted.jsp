@@ -9,6 +9,7 @@
 		<th>Bidded Price</th>
 		<th>ProductId</th>
 		<th>To Purchase</th>
+		
 	</tr>
 	<c:forEach var="t" items="${acclist}">
 		<tr>

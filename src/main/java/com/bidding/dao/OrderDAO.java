@@ -30,19 +30,20 @@ public class OrderDAO {
 		
 	}
 		public int neword(Biddamount b) {
-			String sql ="insert into Ordertb(payment,id) values('" + b.getBidprice() +"','" + b.getId() +"')";
+			String sql ="insert into Ordertb(payment,id,uid) values('" + b.getBidprice() +"','" + b.getId() +"','"+b.getUid()+"')";
 			return template.update(sql);
 		
 		}
-		public List<Order> getOrders() {
+		public List<Order> getOrders(int uid) {
 			
-			return template.query("SELECT p.name, o.*FROM product p JOIN ordertb o ON p.id = o.id", new RowMapper<Order>() {
+			return template.query("SELECT p.name, o.*FROM product p JOIN ordertb o ON p.id = o.id where uid='"+uid+"'", new RowMapper<Order>() {
 				public Order mapRow(ResultSet rs, int row) throws SQLException {
 					Order o = new Order();
 					o.setName(rs.getString(1));
 					o.setOrderid(rs.getInt(2));
 					o.setBidprice(rs.getFloat(3));
 					o.setId(rs.getInt(4));
+					o.setUid(rs.getInt(5));
                        	return o;
 				}
 			});	
