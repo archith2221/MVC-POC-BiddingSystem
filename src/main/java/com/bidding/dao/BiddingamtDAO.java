@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.bidding.beans.Biddamount;
+import com.bidding.beans.Order;
 import com.bidding.beans.Product;
 
 public class BiddingamtDAO {
@@ -24,61 +25,26 @@ public class BiddingamtDAO {
 		return template.queryForObject(sql, new Object[] { bidid  }, new BeanPropertyRowMapper<Product>(Product.class));
 	}
 	
-	
 
-//	public int newbid(Biddamount b) {
-//	String sql ="insert into Bid(bidprice,id,bidaccepted) values('" + b.getBidprice() +"','" + b.getId() +"','" +  (b.isBidAccepted() ? 1:0) +"')";
-//	return template.update(sql);
-//	}
 
 	public int newbid(Biddamount b) {
 	    String sql ="insert into Bid(bidprice,id,bidaccepted,uid) values('" + b.getBidprice() +"','" + b.getId() +"','" +  (b.isBidAccepted() ? 1:0) +"','"+ b.getUid() +"')";
 	    return template.update(sql);
 	}
 
-//	public List<Biddamount> getbidaccepted() {
-//	
-//		return template.query("Select * from Bid where bidaccepted = 1", new RowMapper<Biddamount>() {
-//
-//			@Override
-//			public Biddamount mapRow(ResultSet rs, int rowNum) throws SQLException {
-//				Biddamount n=new Biddamount();
-//				n.setBidid(rs.getInt(1));
-//				n.setBidprice(rs.getFloat(2));
-//				n.setId(rs.getInt(3));
-//				
-//				return n;
-//			}
-//			
-//		});
-//	}
+		
 	public List<Biddamount> getbidaccepted(int uid) {
-	    String sql = "SELECT * FROM Bid WHERE bidaccepted = 1 AND uid = ?";
+	    String sql = "Select b.*,p.name From bid b Join product p ON b.id = p.id WHERE bidaccepted = 1 AND uid = ?";
 	    return template.query(sql, new Object[] { uid }, new BeanPropertyRowMapper<>(Biddamount.class));
 	}
-
+	
 	public List<Biddamount> getbitnotaccepted(int uid) {
-	    String sql = "SELECT * FROM Bid WHERE bidaccepted = 0 AND uid = ?";
+	    String sql = "SELECT b.*,p.name FROM bid b JOIN product p ON b.id=p.id WHERE bidaccepted = 0 AND uid = ?";
 	    return template.query(sql, new Object[] { uid }, new BeanPropertyRowMapper<>(Biddamount.class));
 	}
 	
 	
-//           public List<Biddamount> getbitnotaccepted() {
-//		     
-//		        return template.query("Select * from Bid where bidaccepted=0", new RowMapper<Biddamount>() {
-//
-//					@Override
-//					public Biddamount mapRow(ResultSet rs, int rowNum) throws SQLException {
-//					Biddamount s= new Biddamount();
-//					s.setBidid(rs.getInt(1));
-//					s.setBidprice(rs.getFloat(2));
-//					s.setId(rs.getInt(3));
-//					
-//						return s;
-//					}
-//		        	
-//		        });
-//	      }
+          
 
 	public Biddamount getBidProductBybidId(int id) {
 	String sql="select * from bid where bidid=?";
@@ -93,34 +59,31 @@ public class BiddingamtDAO {
 		return template.update(sql);
 		
 	}
+
 	
 	public List<Biddamount> getbidProducts() {
-		return template.query("select * from bid", new RowMapper<Biddamount>() {
-			public Biddamount mapRow(ResultSet rs, int row) throws SQLException {
-				Biddamount b = new Biddamount();
-				b.setBidid(rs.getInt(1));
-				b.setBidprice(rs.getFloat(2));
-				b.setId(rs.getInt(3));
-				b.setBidAccepted(rs.getBoolean(4));
-				b.setUid(rs.getInt(5));
-				return b;
-			}
-		});
-		
-		
+	    return template.query("SELECT b.*, p.name AS product_name, u.email AS user_email FROM bid b JOIN product p ON b.id = p.id JOIN user u ON b.uid = u.uid ORDER BY b.id", new RowMapper<Biddamount>() {
+	        public Biddamount mapRow(ResultSet rs, int row) throws SQLException {
+	            Biddamount b = new Biddamount();
+	            b.setBidid(rs.getInt(1));
+	            b.setBidprice(rs.getFloat(2));
+	            b.setId(rs.getInt(3));
+	            b.setBidAccepted(rs.getBoolean(4));
+	            b.setUid(rs.getInt(5));
+	            b.setName(rs.getString(6));
+	            b.setEmail(rs.getString(7));
+	            return b;
+	        }
+	    });
 	}
 	
+
 
 	public int deletebid(int id) {
 		String sql="delete from Bid where bidid=" +id+ "";
 		return template.update(sql);
 	}
 
-
-	
-
-
-	
 
 	
 	}

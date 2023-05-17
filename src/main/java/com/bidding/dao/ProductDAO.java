@@ -30,8 +30,7 @@ public class ProductDAO {
   	
 
 	public int update(Product p) {
-//		String sql = "update Product set name='" + p.getName() + "', details=" + p.getDetails() + ",price="
-//				+ p.getPrice() + ",activated='" + p.isActivated() + "' where id=" + p.getId() + "";
+
 		String sql = "update Product set name='" + p.getName() + "', details='" + p.getDetails() + "', price='"
 				+ p.getPrice() + "',activated='" + (p.isActivated() ? 1:0) + "' where id=" + p.getId() + "";
    

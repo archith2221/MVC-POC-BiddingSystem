@@ -25,6 +25,10 @@ public class Usercontroller {
    public String home() {
       return "index";
 }
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	   public String index() {
+	      return "index";
+	}
 
 	@RequestMapping(value = "/home1")
 	   public String home1() {
@@ -42,12 +46,7 @@ public class Usercontroller {
 		
 	}
 	 
-//	 @RequestMapping(value="/registeradd", method = RequestMethod.POST)
-//	 public String registernewuser(@ModelAttribute("u") User u ) {
-//		 userdao.adduser(u);
-//		 return "redirect:/";
-//	 
-//	 }
+
 	 
 	 @RequestMapping(value="/registeradd", method=RequestMethod.POST)
 	 public String registernewuser(@ModelAttribute("command") User user, Model model) {
@@ -87,8 +86,9 @@ public class Usercontroller {
 	                 return "redirect:/home1";
 	             } else if(fetchedUser.getRole().equals("customer")) {
 	            	 session.setAttribute("uid", fetchedUser.getUid());
+	            	 session.setAttribute("name", fetchedUser.getName());
 	            	 System.out.println("uid in session: " + session.getAttribute("uid"));
-	            	    
+	            	 System.out.println("uid in session: " + session.getAttribute("name"));  
 	                 return "redirect:/viewcustprod";
 	             }
 	         }

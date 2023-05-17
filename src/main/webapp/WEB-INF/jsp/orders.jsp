@@ -45,17 +45,17 @@
 			<th>Product Name</th>
 			<th>Amount</th>
 		</tr>
-		<c:forEach var="p" items="${list}">
+		<c:forEach var="o" items="${list}">
 			<tr>
-				<td>${p.orderid}</td>
-				<td>${p.id}</td>
-				<td>${p.name}</td>
-				<td>${p.bidprice}</td>
+				<td>${o.orderid}</td>
+				<td>${o.id}</td>
+				<td>${o.name}</td>
+				<td>${o.bidprice}</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<br />
 
-	<a href="viewcustprod">Back</a><br>
+	<a href="home1">Home Page</a><br>
 </body>
 </html>

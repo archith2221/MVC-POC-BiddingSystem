@@ -1,0 +1,90 @@
+create database Login;
+
+use bidding;
+
+select * from user;
+select * from product;
+select * from bid;
+select * from ordertb;
+
+
+use bidding;
+select * from user;
+
+CREATE TABLE User(
+uid INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(50) NOT NULL,
+password VARCHAR(50) NOT NULL,
+role VARCHAR(50) NOT NULL);
+
+CREATE TABLE Product(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+name VARCHAR(100) NOT NULL,
+details VARCHAR(50) NOT NULL,
+price float NOT NULL,
+activated boolean NOT NULL);
+
+CREATE TABLE Bid (
+  bidid Int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  bidprice DECIMAL(10,2),
+  id INT ,
+  Foreign key (id) REFERENCES Product(id),
+  bidaccepted BOOLEAN NOT NULL,
+  uid int Not null,
+  Foreign key (uid) REFERENCES User(uid)
+);
+
+CREATE TABLE Ordertb(
+orderid INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  id INT ,
+  Foreign key (id) REFERENCES Product(id),
+  payment DECIMAL(10,2),
+  uid int not null
+   
+);
+
+
+insert into User(name,email,password,role) values('General_Manager', 'admin@gmail.com', '123', 'admin');
+
+SELECT * FROM User WHERE email = ?
+
+insert into User(name,email,password,role) values('"+u.getName()+"','"+u.getEmail()+"','"+u.getPassword()+"','"+u.getRole()+"')";
+
+"SELECT * FROM User WHERE email = ? AND password = ?";
+
+insert into Product(name,details,price,activated) values('" + p.getName() + "','" + p.getDetails()
+				+ "', '" + p.getPrice() + "','" +  (p.isActivated() ? 1:0) + "')";
+
+"update Product set name='" + p.getName() + "', details='" + p.getDetails() + "', price='"
+				+ p.getPrice() + "',activated='" + (p.isActivated() ? 1:0) + "' where id=" + p.getId() + "";
+
+delete from Product where id=" + id + "";
+
+"select * from Product where id=?";
+
+"select * from Product"
+
+select * from product where activated = 1
+
+select * from Product where id=?"
+
+insert into Bid(bidprice,id,bidaccepted,uid) values('" + b.getBidprice() +"','" + b.getId() +"','" +  (b.isBidAccepted() ? 1:0) +"','"+ b.getUid() +"')";
+
+"Select b.*,p.name From bid b Join product p ON b.id = p.id WHERE bidaccepted = 1 AND uid = ?"
+
+ "SELECT b.*,p.name FROM bid b JOIN product p ON b.id=p.id WHERE bidaccepted = 0 AND uid = ?";
+
+"select * from bid where bidid=?";
+
+"update Bid set bidaccepted='" + (b.isBidAccepted() ? 1:0) + "' where bidid='" + b.getBidid() + "'";
+
+"SELECT b.*, p.name AS product_name, u.email AS user_email FROM bid b JOIN product p ON b.id = p.id JOIN user u ON b.uid = u.uid ORDER BY b.id"
+
+delete from Bid where bidid=" +id+ "
+
+"SELECT * FROM User WHERE email = ?";
+
+"insert into User(name,email,password,role) values('"+u.getName()+"','"+u.getEmail()+"','"+u.getPassword()+"','"+u.getRole()+"')";
+
+"SELECT * FROM User WHERE email = ? AND password = ?";

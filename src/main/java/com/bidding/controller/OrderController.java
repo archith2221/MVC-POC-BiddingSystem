@@ -46,6 +46,12 @@ public class OrderController {
 		return "Purchased";
 	}
 	
+	@RequestMapping("/orders")
+	public String viewprod(Model m) {
+		List<Order> list = ordao.getallOrders();
+		m.addAttribute("list", list);
+		return "orders";
+	}
 	
 	
 }

@@ -44,11 +44,7 @@ public class BiddingController {
 		  m.addAttribute("P", p);
 	  return "biddamountform"; }
 	  
-//	 	@RequestMapping(value = "/biddstore", method = RequestMethod.POST)
-//	public String biddstore(@ModelAttribute("b") Biddamount b) {
-//		dao.newbid(b);
-//		return "redirect:viewcustprod";
-//	}
+
 	  
 	  
 	  @RequestMapping(value = "/biddstore", method = RequestMethod.POST)
