@@ -43,12 +43,15 @@
 			<th>Order Number</th>
 			<th>Product ID</th>
 			<th>Product Name</th>
+			<th>User Name</th>
 			<th>Amount</th>
+			
 		</tr>
 		<c:forEach var="o" items="${list}">
 			<tr>
 				<td>${o.orderid}</td>
 				<td>${o.id}</td>
+				<td>${o.prodname}</td>
 				<td>${o.name}</td>
 				<td>${o.bidprice}</td>
 			</tr>

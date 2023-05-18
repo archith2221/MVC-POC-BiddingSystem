@@ -51,14 +51,20 @@ public class OrderDAO {
 		}
 	
 public List<Order> getallOrders() {
-			
-			return template.query("SELECT p.name, o.*FROM product p JOIN ordertb o ON p.id = o.id ", new RowMapper<Order>() {
+	
+			return template.query("SELECT o.*, p.name As product_name,u.name As user_name FROM ordertb o JOIN product p ON o.id = p.id Join user u on o.uid=u.uid", new RowMapper<Order>() {
 				public Order mapRow(ResultSet rs, int row) throws SQLException {
 					Order o = new Order();
-					o.setName(rs.getString(1));
-					o.setOrderid(rs.getInt(2));
+					o.setOrderid(rs.getInt(1));
+					o.setId(rs.getInt(2));
 					o.setBidprice(rs.getFloat(3));
-					o.setId(rs.getInt(4));
+					o.setUid(rs.getInt(4));
+					o.setProdname(rs.getNString(5));
+					o.setName(rs.getString(6));
+					
+					
+					
+					
 					
                        	return o;
 				}

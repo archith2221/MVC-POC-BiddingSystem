@@ -1,7 +1,5 @@
 package com.bidding.beans;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.bidding.dao.ProductDAO;
 
 

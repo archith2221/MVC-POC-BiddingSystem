@@ -4,14 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class Order {
 
-	@Autowired
-	Product product;
+	
 	
 	private int uid;
 	
 	private String name;
 	private int orderid;
-	
+	private String prodname;
+	public String getProdname() {
+		return prodname;
+	}
+	public void setProdname(String prodname) {
+		this.prodname = prodname;
+	}
 	private float bidprice;
 	private int id;
 	public int getOrderid() {
@@ -27,12 +32,6 @@ public class Order {
 		this.bidprice = bidprice;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
 	public int getId() {
 		return id;
 	}
