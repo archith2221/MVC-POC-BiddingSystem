@@ -98,7 +98,7 @@ public class BiddingController {
 
 	        String email = dao.getEmailByUid(b.getUid());
                  System.out.println(email);
-	        // Send an email to the customer
+	        
 	        if (b.isBidAccepted()) {
 	            String subject = "Your bid has been accepted!";
 	            String body = "Congratulations! Your bid has been accepted.";
@@ -109,7 +109,7 @@ public class BiddingController {
 	            sendEmail(email, subject, body);
 	        }
 
-	        return "redirect:/viewbidprod"; // Redirect to the bids listing page
+	        return "redirect:/viewbidprod"; 
 	    }
 
 	    private void sendEmail(String to, String subject, String body) {
@@ -122,7 +122,7 @@ public class BiddingController {
 
 	            mailSender.send(message);
 	        } catch (MessagingException e) {
-	            // Handle any exceptions or logging as per your application's requirements
+	           
 	            e.printStackTrace();
 	        }
 	    }

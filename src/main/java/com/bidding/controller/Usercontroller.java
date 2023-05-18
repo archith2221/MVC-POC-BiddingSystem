@@ -51,16 +51,16 @@ public class Usercontroller {
 	 @RequestMapping(value="/registeradd", method=RequestMethod.POST)
 	 public String registernewuser(@ModelAttribute("command") User user, Model model) {
 	     try {
-	    	 System.out.println("Email: " + user.getEmail());
+	    	           
 	         User fetchedUser = userdao.getUserByEmailforReg(user);
-	         System.out.println("HII22");
+	                  
 	         if (fetchedUser == null) {
 	             userdao.adduser(user);
-	             System.out.println("HII");
+	                    System.out.println("HII");
 	             return "redirect:/";
 	         } else {
 	             model.addAttribute("error", "Email already exists");
-	             System.out.println("HII33");
+	                     System.out.println("HII33");
 	             return "register";
 	           
 	         }
