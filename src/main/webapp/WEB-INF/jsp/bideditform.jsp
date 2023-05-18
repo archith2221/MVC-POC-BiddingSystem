@@ -67,6 +67,9 @@
 			<div class="form-group">
 				<form:hidden path="bidid" />
 			</div>
+			<div class="form-group">
+				<form:hidden path="uid" />
+			</div>
 			
 			<div class="form-group">
 				<label class="form-label">Product ID:</label>

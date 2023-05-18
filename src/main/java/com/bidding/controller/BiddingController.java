@@ -2,9 +2,14 @@ package com.bidding.controller;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +27,8 @@ public class BiddingController {
 	
 	@Autowired
 	BiddingamtDAO dao;
+	@Autowired
+    JavaMailSender mailSender;
 	
 	@RequestMapping("/bidaccepted")
 	public String viewacceptedbid(Model m,HttpSession session) {
@@ -77,15 +84,48 @@ public class BiddingController {
 		return "redirect:/viewbidprod";
 	}
 	
-	@RequestMapping(value = "/bideditsave", method = RequestMethod.POST)
+	/*
+	 * @RequestMapping(value = "/bideditsave", method = RequestMethod.POST) public
+	 * String editsave(@ModelAttribute("b") Biddamount b) { //
+	 * System.out.println("Done"); dao.bidupdate(b); // System.out.println("Done1");
+	 * return "redirect:/viewbidprod"; }
+	 */
+
+	 @RequestMapping(value = "/bideditsave", method = RequestMethod.POST)
 	public String editsave(@ModelAttribute("b") Biddamount b) {
-//		 System.out.println("Done"); 
-		dao.bidupdate(b);
-//		System.out.println("Done1");
-		return "redirect:/viewbidprod";
-	}
-	
-	
+		 System.out.println(b.getUid());
+		 dao.bidupdate(b);
+
+	        String email = dao.getEmailByUid(b.getUid());
+                 System.out.println(email);
+	        // Send an email to the customer
+	        if (b.isBidAccepted()) {
+	            String subject = "Your bid has been accepted!";
+	            String body = "Congratulations! Your bid has been accepted.";
+	            sendEmail(email, subject, body);
+	        } else {
+	            String subject = "Bid update";
+	            String body = "Your bid status has been updated.";
+	            sendEmail(email, subject, body);
+	        }
+
+	        return "redirect:/viewbidprod"; // Redirect to the bids listing page
+	    }
+
+	    private void sendEmail(String to, String subject, String body) {
+	        try {
+	            MimeMessage message = mailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+	            helper.setTo(to);
+	            helper.setSubject(subject);
+	            helper.setText(body);
+
+	            mailSender.send(message);
+	        } catch (MessagingException e) {
+	            // Handle any exceptions or logging as per your application's requirements
+	            e.printStackTrace();
+	        }
+	    }
 	
 
 }

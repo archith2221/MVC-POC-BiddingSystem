@@ -59,6 +59,11 @@ public class BiddingamtDAO {
 		return template.update(sql);
 		
 	}
+	public String getEmailByUid(int uid) {
+	    String sql = "SELECT email FROM user WHERE uid = ?";
+	     return template.queryForObject(sql, new Object[] { uid}, String.class);
+	
+	}
 
 	
 	public List<Biddamount> getbidProducts() {
